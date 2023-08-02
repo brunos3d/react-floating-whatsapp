@@ -1,5 +1,4 @@
-import React, { useReducer, useEffect, useCallback, useRef, useMemo } from 'react'
-import { reducer } from '../reducer'
+import React, { useEffect, useCallback, useRef, useMemo } from 'react'
 import { WhatsappSVG, CloseSVG, CheckSVG, SendSVG } from './Icons'
 import css from '../styles.module.css'
 
@@ -7,6 +6,7 @@ import darkBG from './assets/bg-chat-tile-light.png'
 import lightBG from './assets/bg-chat-tile-dark.png'
 import dummyAvatar from './assets/uifaces-avatar.jpg'
 import SoundBeep from './assets/whatsapp-notification.mp3'
+import { useWhatsAppWindow } from 'src/contexts/whats-window-context'
 
 export interface FloatingWhatsAppProps {
   /** Callback function fires on click */
@@ -112,11 +112,7 @@ export function FloatingWhatsApp({
   style,
   className = 'floating-whatsapp'
 }: FloatingWhatsAppProps) {
-  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, {
-    isOpen: false,
-    isDelay: true,
-    isNotification: false
-  })
+  const { isOpen, isDelay, isNotification, dispatch } = useWhatsAppWindow()
 
   const timeNow = useMemo(() => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), [])
 
@@ -144,7 +140,7 @@ export function FloatingWhatsApp({
         if (onLoopDone) onLoopDone()
       }
     }
-  }, [notification, notificationLoop, notificationSound, onNotification, onLoopDone])
+  }, [notification, dispatch, onNotification, notificationLoop, notificationSound, onLoopDone])
 
   useEffect(() => {
     const delayInSecond = notificationDelay * 1000
@@ -166,14 +162,14 @@ export function FloatingWhatsApp({
       setTimeout(() => dispatch({ type: 'delay' }), messageDelay * 1000)
       if (onClick) onClick(event)
     },
-    [isOpen, onClick, messageDelay]
+    [isOpen, dispatch, messageDelay, onClick]
   )
 
   const handleClose = useCallback(() => {
     dispatch({ type: 'close' })
 
     if (onClose) onClose()
-  }, [onClose])
+  }, [dispatch, onClose])
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
