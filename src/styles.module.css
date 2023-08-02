@@ -138,6 +138,9 @@
 .chatHeader .close {
   cursor: pointer;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chatHeader .close svg {
