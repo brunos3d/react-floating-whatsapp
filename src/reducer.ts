@@ -1,12 +1,12 @@
-type State = {
+export type WhatsAppState = {
   isOpen: boolean
   isDelay: boolean
   isNotification: boolean
 }
 
-type Action = { type: 'open' } | { type: 'close' } | { type: 'delay' } | { type: 'notification' }
+export type WhatsAppDispatchAction = { type: 'open' } | { type: 'close' } | { type: 'delay' } | { type: 'notification' }
 
-export function reducer(state: State, action: Action): State {
+export function reducer(state: WhatsAppState, action: WhatsAppDispatchAction): WhatsAppState {
   switch (action.type) {
     case 'open':
       return {

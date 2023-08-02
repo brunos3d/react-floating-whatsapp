@@ -82,20 +82,22 @@
   display: grid;
   align-items: center;
   padding: 0.25rem;
-  grid-template-columns: 20% 60% 1fr;
+  grid-template-columns: 20% 60% 20%;
   gap: 1%;
 }
 
 .chatHeader .avatar {
   padding: 0.25rem;
   position: relative;
+  width: 100%;
+  max-width: 56px;
 }
 
 .chatHeader .avatar img {
   vertical-align: middle;
   border-radius: 50%;
-  height: 60px;
-  width: 60px;
+  width: 100%;
+  max-width: 50px;
   border: 1px solid rgba(255, 255, 255, 0.473);
 }
 
@@ -120,7 +122,7 @@
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  padding-left: 0.25rem;
 }
 
 .chatHeader .statusTitle {
@@ -134,7 +136,6 @@
 }
 
 .chatHeader .close {
-  padding: 1rem;
   cursor: pointer;
   text-align: center;
 }
@@ -216,7 +217,8 @@
 .chatBody .messageBody {
   font-size: 14px;
   line-height: 19px;
-  margin-top: 4px;
+  margin-top: 0;
+  margin-bottom: 0;
   color: #111111;
   white-space: pre-wrap;
 }
@@ -235,7 +237,7 @@
 
 .chatBody .messageTime {
   display: flex;
-  margin-top: 4px;
+  font-size: 12px;
   font-size: 12px;
   line-height: 16px;
   color: rgb(17 17 17 / 50%);
@@ -257,7 +259,7 @@
 
 .chatFooter form .input {
   border-radius: 20px;
-  padding: 0 10px;
+  padding: 0 20px;
   border: none;
   background-color: #fefefe;
   min-height: 45px;

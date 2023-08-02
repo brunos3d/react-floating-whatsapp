@@ -231,7 +231,7 @@ export function FloatingWhatsApp({
       >
         <header className={css.chatHeader}>
           <div className={css.avatar}>
-            <img src={avatar} width='60' height='60' alt='whatsapp-avatar' />
+            <img src={avatar} alt='whatsapp-avatar' />
           </div>
           <div className={css.status}>
             <span className={css.statusTitle}>{accountName}</span>
