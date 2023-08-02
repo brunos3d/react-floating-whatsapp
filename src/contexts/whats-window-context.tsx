@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext, PropsWithChildren } from 'react'
-import { reducer, type WhatsAppDispatchAction } from '../reducer'
+import { reducer, type WhatsAppDispatchAction, type WhatsAppState } from '../reducer'
 
 export type WhatsAppWindowContext = {
   isOpen: boolean
@@ -42,12 +42,15 @@ export const WhatsAppWindowContext = createContext<WhatsAppWindowContext>({
   }
 })
 
-export const WhatsAppWindowContextProvider = ({ children }: PropsWithChildren) => {
-  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, {
-    isOpen: false,
-    isDelay: true,
-    isNotification: false
-  })
+export interface WhatsAppWindowContextProviderProps {
+  intialState: WhatsAppState
+}
+
+export const WhatsAppWindowContextProvider = ({
+  children,
+  intialState
+}: PropsWithChildren<WhatsAppWindowContextProviderProps>) => {
+  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, intialState)
 
   const open = () => dispatch({ type: 'open' })
   const close = () => dispatch({ type: 'close' })
