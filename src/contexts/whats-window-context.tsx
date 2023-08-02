@@ -43,14 +43,24 @@ export const WhatsAppWindowContext = createContext<WhatsAppWindowContext>({
 })
 
 export interface WhatsAppWindowContextProviderProps {
-  intialState: WhatsAppState
+  intialState?: Partial<WhatsAppState>
 }
 
 export const WhatsAppWindowContextProvider = ({
   children,
-  intialState
+  intialState = {}
 }: PropsWithChildren<WhatsAppWindowContextProviderProps>) => {
-  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, intialState)
+  const {
+    isOpen: intialIsOpen = false,
+    isDelay: initialIsDelay = true,
+    isNotification: initialIsNotification = false
+  } = intialState
+
+  const [{ isOpen, isDelay, isNotification }, dispatch] = useReducer(reducer, {
+    isOpen: intialIsOpen,
+    isDelay: initialIsDelay,
+    isNotification: initialIsNotification
+  })
 
   const open = () => dispatch({ type: 'open' })
   const close = () => dispatch({ type: 'close' })
