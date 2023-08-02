@@ -1,6 +1,6 @@
 {
   "name": "zapx",
-  "version": "5.0.9",
+  "version": "5.0.10",
   "private": false,
   "description": "Simple React Component for adding a floating WhatsApp button to your project.",
   "author": {
