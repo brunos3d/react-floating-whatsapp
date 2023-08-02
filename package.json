@@ -1,6 +1,6 @@
 {
   "name": "zapx",
-  "version": "5.0.8",
+  "version": "5.0.9",
   "private": false,
   "description": "Simple React Component for adding a floating WhatsApp button to your project.",
   "author": {
@@ -11,10 +11,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brunos3d/react-floating-whatsapp.git"
+    "url": "https://github.com/brunos3d/zapx.git"
   },
   "bugs": {
-    "url": "https://github.com/brunos3d/react-floating-whatsapp/issues"
+    "url": "https://github.com/brunos3d/zapx/issues"
   },
   "homepage": "https://react-floating-whatsapp.vercel.app/",
   "main": "dist/index.js",
